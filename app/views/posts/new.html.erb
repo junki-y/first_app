@@ -1,0 +1,28 @@
+<div class="main posts-new">
+  <div class="container">
+    <h1 class="form-heading">投稿する</h1>
+    <!--/posts/create(データベース)へ送信 end忘れずに-->
+    <%=form_tag("/posts/create",{multipart: true}) do %>
+    
+    <div class="form">
+      <div class="form-body">
+        <!--エラー表示-->
+         <% if @post.errors.any? %>
+          <ul><% @post.errors.full_messages.each do |message| %>
+            <div class="form-error">
+              <li><%= message %></li>
+            </div>
+          <% end %>
+          </ul>
+         <% end %>
+          <!--name属性付与してアクション内で受け取れるようにする-->
+        <textarea name ="content"><%=@post.content %></textarea>
+        <!--画像の投稿-->
+        <input name="image" type="file">
+        <input type="submit" value="投稿">
+      </div>
+    </div>
+    <%end%>
+    
+  </div>
+  </div>

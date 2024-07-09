@@ -1,0 +1,29 @@
+<div class="main posts-new">
+  <div class="container">
+    <h1 class="form-heading">編集する</h1>
+    <!--送信先がupdateアクション(データベース) end忘れずに-->
+    <%= form_tag("/posts/#{@post.id}/update",{multipart: true}) do %>
+    
+    <div class="form">
+      <div class="form-body">
+        <!--エラー表示-->
+         <% if @post.errors.any? %>
+          <ul><% @post.errors.full_messages.each do |message| %>
+            <div class="form-error">
+              <li><%= message %></li>
+            </div>
+          <% end %>
+          </ul>
+         <% end %>
+          <!--編集前の初期値を表示-->
+          <!--データベースに送信できるようにname属性追加-->
+        <textarea name="content"><%= @post.content %></textarea>
+        <p>画像</p>
+        <input name="image" type="file">
+        <input type="submit" value="保存">
+      </div>
+    </div>
+    
+    <% end %>
+  </div>
+</div>
